@@ -1,0 +1,25 @@
+{
+  "name": "design",
+  "version": "1.0.0",
+  "description": "svg",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fridaymeng/design.git"
+  },
+  "keywords": [
+    "design"
+  ],
+  "author": "fridaymeng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fridaymeng/design/issues"
+  },
+  "homepage": "https://github.com/fridaymeng/design#readme",
+  "devDependencies": {
+    "webpack": "^1.13.1"
+  }
+}
