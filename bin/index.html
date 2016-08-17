@@ -1,23 +1,74 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Pragma" content="no-cache"> 
-    <meta http-equiv="Cache-Control" content="no-cache"> 
-    <meta http-equiv="Expires" content="0"> 
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title></title>
     <link rel="stylesheet" href="">
+    <style type="text/css" media="all">
+    body{
+    	margin : 0;
+    	padding: 0;
+    }
+    polygon {
+        fill: transparent;
+        opacity: .75;
+        stroke: #08c;
+    }
+    
+    circle {
+        fill: #08c;
+        stroke: transparent;
+    }
+    
+    text {
+        font-family: Helvetica Neue, Arial, sans-serif;
+        font-size: 10px;
+        fill: #666;
+    }
+    
+    label {
+        display: inline-block;
+        margin-left: 10px;
+        width: 20px;
+    }
+    
+    #raw {
+        position: absolute;
+        top: 0;
+        left: 300px;
+    }
+    </style>
 </head>
+
 <body>
-    <div ms-controller="test">
-        <input ms-duplex="@name">
-        <p>Hello,{{@name}}!</p>
-        <ul>
-           <li ms-for="($index,el) in @array">{{$index}}--{{el}}</li>
-        </ul>
+    <!-- template for the polygraph component. -->
+    <script type="text/x-template" id="polygraph-template">
+        <g>
+            <polygon :points="points"></polygon>
+            <axis-label v-for="stat in stats" :stat="stat" :index="$index" :total="stats.length"></axis-label>
+        </g>
+    </script>
+    <!-- template for the axis label component. -->
+    <script type="text/x-template" id="axis-label-template">
+    	<g>
+            <text :x="point.x+12" :y="point.y+5">{{stat.label}}</text>
+            <circle :cx="point.x" :cy="point.y" r="10" stroke-width="1" />
+        </g>
+    </script>
+    <!-- demo root element -->
+    <div id="demo">
+        <!-- Use the component -->
+        <svg id="svgid" width="1900" height="1600">
+            <polygraph :stats="stats"></polygraph>
+        </svg>
     </div>
     <script src="http://localhost:8080/webpack-dev-server.js" charset="utf-8"></script>
     <script src="app.bundle.js" type="text/javascript" charset="utf-8"></script>
 </body>
+
 </html>
